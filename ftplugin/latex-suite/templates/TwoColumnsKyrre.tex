@@ -1,0 +1,188 @@
+%% The comment character in TeX / LaTeX is the percent character.
+%% The following chunk is called the header
+
+\documentclass{article}	% essential first line
+\usepackage{float}		% this is to place figures where requested!
+\usepackage{times}		% this uses fonts which will look nice in PDF format
+\usepackage{graphicx}		% needed for the figures
+\usepackage{url}
+
+%% Here I adjust the margins
+
+\oddsidemargin -0.25in		% Left margin is 1in + this value
+\textwidth 6.75in		% Right margin is not set explicitly
+\topmargin 0in			% Top margin is 1in + this value
+\textheight 9in			% Bottom margin is not set explicitly
+\columnsep 0.25in		% separation between columns
+
+%% Define a macro for inserting postscript images
+%% ==============================================
+%% This is a macro which nominally takes 3 parameters, 
+%% it would be used as follows to insert and encapsulated postscript
+%% image at the location where it is used.
+%%
+%% \EPSFIG{epsfilename}{caption}{label}
+%% - epsfilename is the name of the encapsulated postscript file to be
+%%               inserted at this location
+%% - caption is the text to be shown as the figure caption, it will be
+%%           prepended by Figure X.  The number X can be referenced
+%%           using the label parameter.
+%% - label is a name given to the figure, it can be referenced using the
+%%         \ref{label} command.
+
+\def\EPSFIG[#1]#2#3#4{		% Don't be scared by this monsrosity
+\begin{figure}[H]		% it is a macro to save typing later
+\begin{center}			% 
+\includegraphics[#1]{#2}	%
+\end{center}			%
+\caption{#3}			%
+\label{#4}			%
+\end{figure}			%
+}				%
+
+
+%% Define the fields to be displayed by a \maketitle command
+
+\author{First Author, Second Author}
+\title{A Template For Writing Lab Reports in \LaTeX}
+
+%%
+%% Header now finished
+%%
+
+\begin{document}		% Critical
+\twocolumn
+\thispagestyle{empty}		% Inhibit the page number on this page
+\maketitle			% Use the \author, \title and \date info
+
+%% Next comes the abstract, notice the curly-braces surrounding the
+%% text.
+
+\abstract{A document was prepared which gives a framework which can be
+used to write documents suitable for lab reports.}
+
+\section{Introduction}
+\LaTeX\ is a typesetting language\cite{LAMPORT}.  It is actually a set
+of \textit{macros} for \TeX, which is a typesetting system.  \TeX\ was
+written by Donald Knuth, a celebrated computer scientist and
+mathematician, in reaction to his disatisfation with available
+software.  Much as Unix is an operating system which appeals to people
+who write programs, \TeX\ and \LaTeX\ tend to appeal to technically
+minded people.
+
+This document is written to expose you to some of the features of
+\LaTeX\ which might make it suitable for preparing lab reports.  It
+does not cover how to compile documents, this is covered on the
+\textit{Wiki} page for this template\cite{WIKI-LATEX-TEMPLATE}.
+
+This template is not provided as a part of any exercise, you do not
+have to use it, it is provided as a resource which you may use if you
+are interested.
+
+\section{Typesetting}
+The following is quoted from Wikipedia\cite{WIKIPEDIA-LATEX}:
+\begin{quote}
+\LaTeX\ is based on the idea that authors should be able to concentrate
+on writing within the logical structure of their document, rather than
+spending their time on the details of formatting. It encourages the
+separation of formatting from content, whilst still allowing manual
+typesetting adjustments where needed. By keeping the formatting
+details in a separate file from the text, it is often regarded as
+superior to word processors and most other desktop publishing systems,
+which allow trivially easy visual layout changes but tend to
+intertwine content and form so tightly that consistency and automation
+are often difficult.
+\end{quote}
+
+\section{Citations}
+Notice how in the Introduction section I made reference to an item in
+the References section at the end of the document.  In the
+bibliography file \texttt{report.bib} the information about this
+reference is stored and labeled \texttt{LAMPORT}.  Anywhere I wish to
+cite this reference it is just a matter of entering the command
+\texttt{$\backslash$cite\{LAMPORT\}}.  \LaTeX\ will keep track of the
+numbers, you just have to use the labels.
+
+\section{Using Equations}
+Sometimes in a lab report you might want to insert the odd equation,
+it is important to refer to these by number.  Again we can let
+\LaTeX\ keep track of the numbers and use labels.  It is not at all
+required, but an unspoken convention that most people use upcase for
+labels.  Labels can contain hyphens (-), but not underscores (\_).
+
+\begin{equation}
+\mu = \frac{1}{N}\sum_{i=1}^N x_i.
+\label{EQ-DEFMEAN}
+\end{equation}
+%It is important that no blank line appear here as that starts a new paragraph.
+Equation \ref{EQ-DEFMEAN} shows a common definition for the mean,
+$\mu$, where $x_i$ is the value of the $i$th sample, $N$ is the number of samples.
+First note that, as required, all symbols have been defined.
+Also note that the equation has a period. Equations are part of the text and
+should follow punctuation rules. That is they should have periods, commas
+etc as required. A good rule of thumb is to treat the equation like
+a sentence with the equal sign as the verb. Thus the above formula
+reads:
+$\mu$ equals one over $N$ times the sum of $x_i$ from 1 to $N$. As you can
+see, this sentence
+definitely requires a period.
+
+There are two modes in \LaTeX, \textit{paragraph mode} and \textit{math
+mode}.  \LaTeX\ is in paragraph mode when it is processing ordinary
+prose\cite{DILLER}.  Between the
+\texttt{$\backslash$begin\{equation\}} and
+\texttt{$\backslash$end\{equation\}} commands \LaTeX\ is in math mode,
+this allows access to a vast array of mathematical symbols.  You can
+switch briefly into math mode using the dollar character (\$) as a
+delimiter.
+
+\section{Figures}
+Arbitrary encapsulated-postscript can be displayed in \LaTeX\ using
+the figure environment.  I always use the ``H'' position specifier in
+conjunction with the \texttt{$\backslash$usepackage\{float\}} command in the
+header of the document.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.65]{pendulum.eps}
+\end{center}
+\caption{Variation of period of a pendulum as a function of length.}
+\label{FIG-PEND}
+\end{figure}
+
+Please note that the graph shown in figure~\ref{FIG-PEND} is only to
+show how to insert a graph, not in any way how to format a graph.  It
+is a graph which I made to reproduce an image in the Phys-257/258 lab
+notes a couple of years ago when they were being revised.
+Unfortunately, as an example of a graph, it is repugnant.  On brief
+inspection the following points come to mind:
+\begin{itemize}
+\item Where are the error bars?
+\item A more descriptive x-axis caption would have been ``Pendulum length (m).''
+\item Despite space restrictions, a better y-axis caption would have
+  been ``Period (s).''
+\item The numbering is on the small side, almost unreadable.
+\end{itemize}
+
+One of the nice features of \LaTeX\ is that one can define a macro to
+cut down on the amount of redundant typing required.  This was the
+purpose of the \texttt{EPSFIG} macro defined in the header of this
+document.  Notice how the figure~\ref{FIG-GAUSS} is inserted using the
+macro.
+
+\EPSFIG[scale=0.5]{gaussian.eps}{A decorated gaussian}{FIG-GAUSS}
+
+The Encapsulated Postscript image shown in figure~\ref{FIG-GAUSS} was
+created using Gnuplot.
+
+\section{Conclusions}
+Hopefully this might be slightly helpful.  I urge you to look at some
+other reference materials, such as Oetiker's paper\cite{OETIKER-NSSITL}.
+
+%% This bit generates the references.  This part starts to get
+%% slightly tricky.
+
+\bibliographystyle{unsrt}	% Order by citation
+\bibliography{report}
+
+\end{document}

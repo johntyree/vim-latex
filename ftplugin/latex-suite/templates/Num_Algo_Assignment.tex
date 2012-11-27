@@ -14,21 +14,22 @@
 \usepackage{array}
 \usepackage{listings}
 \usepackage{titling}
-%\usepackage{minted}
-%\definecolor{LightGray}{rgb}{0.95,0.95,0.95}
-%\newminted{c}{
-%linenos,
-%frame=single,
-%fontsize=\footnotesize,
-%bgcolor=LightGray,
-%}
+\usepackage{minted}
+\definecolor{LightGray}{rgb}{0.95,0.95,0.95}
+\newminted{matlab}{
+linenos,
+frame=single,
+fontsize=\footnotesize,
+bgcolor=LightGray,
+}
 % Hyperref must be last
 \usepackage[backref,colorlinks,linkcolor=blue]{hyperref}
-\usepackage[all]{hypcap}  % Fix links to figures
 
 \newcommand{\TODO}{{\huge\emph{\color{red}!}}}
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
 
-\title{}<++>
+\title{Exercises Ch. }<++>
 \author{John Tyree\\
 University of Amsterdam\\
 \texttt{tyree@science.uva.nl}}
@@ -41,19 +42,6 @@ pdfauthor={John Tyree}
 
 \begin{document}
 \maketitle
-\section{Abstract}
+\section*{<++>}
 <++>
-
-\section{Introduction}
-
-\section{Implementation}
-
-\section{Results}
-
-\section{Conclusion}
-
-\section{Future Work}
-
-% \bibliographystyle{unsrt}  % Order by citation
-% \bibliography{report}
 \end{document}
