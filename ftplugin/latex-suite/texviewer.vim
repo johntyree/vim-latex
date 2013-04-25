@@ -2,7 +2,7 @@
 " 	     File: texviewer.vim
 "      Author: Mikolaj Machowski
 "     Created: Sun Jan 26 06:00 PM 2003
-" Description: make a viewer for various purposes: \cite{, \ref{
+" Description: make a viewer for various purposes: \cite{, \(auto)?ref{
 "     License: Vim Charityware License
 "              Part of vim-latexSuite: http://vim-latex.sourceforge.net
 " ============================================================================
@@ -386,7 +386,7 @@ function! s:Tex_CompleteRefCiteCustom(type)
 		endif
 		let completeword = bibkey
 
-	elseif a:type =~ 'ref'
+	elseif a:type =~ '\(auto\)?ref'
 		let label = matchstr(getline('.'), '\\label{\zs.\{-}\ze}')
 		let completeword = label
 

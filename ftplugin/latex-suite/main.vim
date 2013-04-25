@@ -912,7 +912,7 @@ if exists("g:Tex_TaglistSupport") && g:Tex_TaglistSupport == 1
 		\.' --regex-tex="/\\\\backmatter/BACKMATTER/s,backmatter/"'
 		\.' --regex-tex="/\\\\appendix/APPENDIX/s,appendix/"'
 		\.' --regex-tex="/\\\\label[ \t]*\*?\{[ \t]*([^}]*)\}/\1/l,label/"'
-		\.' --regex-tex="/\\\\ref[ \t]*\*?\{[ \t]*([^}]*)\}/\1/r,ref/"'
+		\.' --regex-tex="/\\\\\(auto\)?ref[ \t]*\*?\{[ \t]*([^}]*)\}/\2/r,ref/"'
 	endif
 endif
 
